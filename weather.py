@@ -41,21 +41,23 @@ def get_screenshot_html(url):
     chrome_options = Options()
     chrome_options.add_argument("--headless")
     driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+    driver.set_window_size(150, 150)
     driver.get(url)
+    driver.save_screenshot('s.png')
 
-    element = driver.find_element(By.TAG_NAME, 'body')
-    location = element.location
-    png = driver.get_screenshot_as_png()
-    driver.quit()
-
-    im = Image.open(BytesIO(png))
-    left = 0
-    top = 0
-    right = location['x'] + 130
-    bottom = location['y'] + 135
-
-    im = im.crop((left, top, right, bottom))  # defines crop points
-    im.save('screenshot.png')  # saves new cropped image
+    # element = driver.find_element(By.TAG_NAME, 'body')
+    # location = element.location
+    # png = driver.get_screenshot_as_png()
+    # driver.quit()
+    #
+    # im = Image.open(BytesIO(png))
+    # left = 0
+    # top = 0
+    # right = location['x'] + 130
+    # bottom = location['y'] + 135
+    #
+    # im = im.crop((left, top, right, bottom))  # defines crop points
+    # im.save('screenshot.png')  # saves new cropped image
 
 
 get_city_weather_screen('kyiv')

@@ -21,7 +21,7 @@ def start(message):
 def get_weather_from_text(message):
     city = message.text
     get_city_weather_screen(city)
-    pict = open('screenshot.png', 'rb')
+    pict = open('s.png', 'rb')
     bot.send_photo(message.chat.id, pict)
     w = get_city_weather(city)
     bot.send_message(message.chat.id, w)
